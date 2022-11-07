@@ -25,9 +25,6 @@ const MM_TO_PX = (length: number):number => {
     return length / 0.1
 }
 
-let canvas = document.getElementById("pixi-canvas") as HTMLCanvasElement
-console.log(canvas);
-
 const kiapp = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,

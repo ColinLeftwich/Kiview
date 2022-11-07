@@ -18,29 +18,24 @@ class Kiview extends HTMLElement {
 
 window.customElements.define('ki-view', Kiview);
 
-const WIDTH = 297;
-const HEIGHT = 210;
-
-const MM_TO_PX = (length: number):number => {
-    return length / 0.1
-}
+const WORLD_WIDTH = 2000
+const WORLD_HEIGHT = 2000
 
 const kiapp = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0xF5F4EF,
-	width: 640,
-	height: 480,
+	width: window.innerWidth,
+	height: window.innerHeight,
     antialias:true,
 });
 
 const sch_view = new Viewport({
-    screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight,
-    worldWidth: MM_TO_PX(WIDTH),
-    worldHeight: MM_TO_PX(HEIGHT),
-    interaction: kiapp.renderer.plugins.interaction 
+    worldWidth: WORLD_WIDTH,
+    worldHeight: WORLD_HEIGHT,
+    interaction: kiapp.renderer.plugins.interaction,
+    divWheel: kiapp.view as any,
 });
 
 kiapp.stage.addChild(sch_view);

@@ -1,7 +1,7 @@
 Work in progress web kicad file viewer
 
 TODO
-- [ ] Figure out object graphic rotation
+- [ ] Figure out graphic object rotation
 - [ ] Add pin data class
 - [ ] Finish up details of resistor
 - [ ] Add component selection 

@@ -30,6 +30,8 @@ const kiapp = new Application({
 	height: window.innerHeight,
     antialias:true,
 });
+kiapp.stage.interactive = true;
+
 
 const sch_view = new Viewport({
     worldWidth: WORLD_WIDTH,
@@ -37,7 +39,6 @@ const sch_view = new Viewport({
     interaction: kiapp.renderer.plugins.interaction,
     divWheel: kiapp.view as any,
 });
-
 kiapp.stage.addChild(sch_view);
 
 sch_view

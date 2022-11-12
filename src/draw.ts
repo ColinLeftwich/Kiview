@@ -1,24 +1,42 @@
 import { Container, Graphics } from 'pixi.js'
 import { RectangleData, LineData } from './dataclass'
 
-const MM_TO_PX = (length: number):number => {
+const MM_TO_PX = (length: number): number => {
     return length / 0.1
 }
 
 export const drawRectangle = (rectangle: RectangleData) => {
+    // Make container
     let rectangle_container = new Container();
 
+    // Set container to location of rectangle
+    rectangle_container.x = MM_TO_PX(rectangle.outer.pos.x);
+    rectangle_container.y = MM_TO_PX(rectangle.outer.pos.y);
+
+    // Create rectangle graphic at (0,0)
     let rectangle_graphic = new Graphics();
     rectangle_graphic.beginFill(0x840000);
-    rectangle_graphic.drawRoundedRect(MM_TO_PX(rectangle.outer.pos.x), MM_TO_PX(rectangle.outer.pos.y), MM_TO_PX(rectangle.outer.width), MM_TO_PX(rectangle.outer.height), MM_TO_PX(rectangle.line_width));
+    rectangle_graphic.drawRoundedRect(0, 0, MM_TO_PX(rectangle.outer.width), MM_TO_PX(rectangle.outer.height), MM_TO_PX(rectangle.line_width));
     rectangle_graphic.endFill();
 
+
     rectangle_graphic.beginHole();
-    rectangle_graphic.drawRect(MM_TO_PX(rectangle.inner.pos.x), MM_TO_PX(rectangle.inner.pos.y), MM_TO_PX(rectangle.inner.width), MM_TO_PX(rectangle.inner.height));
+    rectangle_graphic.drawRect(MM_TO_PX(rectangle.line_width), MM_TO_PX(rectangle.line_width), MM_TO_PX(rectangle.inner.width), MM_TO_PX(rectangle.inner.height));
     rectangle_graphic.endHole();
-    
+
+    // Set pivot point to half the width and height
+    rectangle_graphic.pivot.x = MM_TO_PX(rectangle.outer.width / 2);
+    rectangle_graphic.pivot.y = MM_TO_PX(rectangle.outer.height / 2);
+
+
+    // Offset rectangle position in container by the half the width and height
+    rectangle_graphic.x = MM_TO_PX(rectangle.outer.width / 2);
+    rectangle_graphic.y = MM_TO_PX(rectangle.outer.height / 2);
+
+    // Set angle of rectangle graphic 
+    rectangle_graphic.angle = rectangle.angle;
+
     rectangle_container.addChild(rectangle_graphic);
-    rectangle_container.angle = 0;
     return rectangle_container;
 }
 

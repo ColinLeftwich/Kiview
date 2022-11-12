@@ -1,7 +1,7 @@
 Work in progress web kicad file viewer
 
 TODO
-- [ ] Figure out graphic object rotation
+- [x] Figure out graphic object rotation
 - [ ] Log Mouse Position
 - [ ] Refactor data classes
 - [ ] Create component class

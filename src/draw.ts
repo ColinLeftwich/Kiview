@@ -5,7 +5,7 @@ const MM_TO_PX = (length: number): number => {
     return length / 0.1
 }
 
-export const drawRectangle = (rectangle: RectangleData) => {
+export const drawRectangle = (rectangle: RectangleData): Container => {
     // Make container
     let rectangle_container = new Container();
 

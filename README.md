@@ -2,6 +2,8 @@ Work in progress web kicad file viewer
 
 TODO
 - [ ] Figure out graphic object rotation
-- [ ] Add pin data class
+- [ ] Refactor data classes
+- [ ] Add pin data class with rotation
 - [ ] Finish up details of resistor
-- [ ] Add component selection 
+- [ ] Hide draw wire indicators
+- [ ] Add component selection visual highlight

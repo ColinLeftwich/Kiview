@@ -1,7 +1,7 @@
 import { Application } from 'pixi.js'
 import { Viewport } from 'pixi-viewport'
 
-import { RectangleData, LineData } from './dataclass'
+import { get_lib, symbol_instance } from './parse_mock';
 import { sch_render } from './sch_render';
 
 class Kiview extends HTMLElement {
@@ -46,3 +46,6 @@ sch_view
     .pinch()
     .wheel();
 
+const libraries = get_lib();
+const components = symbol_instance();
+sch_render(libraries, components, sch_view);

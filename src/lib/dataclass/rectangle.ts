@@ -1,12 +1,6 @@
-class Coordinate {
-    x: number;
-    y: number;
-
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-    }
-}
+import { Coordinate } from "../common";
+import { RectangleSymbol } from "../symbols/graphics";
+import { SymbolInstance } from "../symbols/symbol";
 
 class RectangleFrameData {
     start: Coordinate;
@@ -31,20 +25,6 @@ class RectangleGraphicData {
 
 }
 
-/*
-class PinData {
-    start: Coordinate;
-    end: Coordinate;
-    width: number;
-
-    constructor(start: [number, number], length: number, width: number) {
-        this.start = new Coordinate(start[0], start[1]);
-        this.end = new Coordinate(start[0], start[1] + length);
-        this.width = width;
-    }
-}
-*/
-
 export class RectangleData {
     angle: number;
     line_width: number;
@@ -54,15 +34,15 @@ export class RectangleData {
     outer: RectangleGraphicData;
     inner: RectangleGraphicData;
 
-    constructor(start: [number, number], end: [number, number], origin_position: [number, number], line_width: number, angle: number) {
-        this.angle = angle;
-        this.line_width = line_width;
-        this.center = new Coordinate(origin_position[0], origin_position[1]);
+    constructor(component: SymbolInstance, symbol: RectangleSymbol) {
+        this.angle = component.angle;
+        this.line_width = 0.254;
+        this.center = new Coordinate(component.pos.x, component.pos.y);
 
-        let frame_start_x = this.center.x + start[0];
-        let frame_start_y = this.center.y + start[1];
-        let frame_end_x = this.center.x + end[0];
-        let frame_end_y = this.center.y + end[1];
+        let frame_start_x = this.center.x + symbol.start.x;
+        let frame_start_y = this.center.y + symbol.start.y;
+        let frame_end_x = this.center.x + symbol.end.x;
+        let frame_end_y = this.center.y + symbol.end.y;
         this.frame = new RectangleFrameData([frame_start_x, frame_start_y], [frame_end_x, frame_end_y]);
 
         let outer_start_x = this.frame.start.x - (this.line_width / 2);
@@ -82,17 +62,5 @@ export class RectangleData {
         this.inner = new RectangleGraphicData([inner_start_x, inner_start_y], inner_width, inner_height);
 
         this.pivot = new Coordinate(this.outer.height / 2, this.outer.width / 2,);
-    } 
-}
-
-export class LineData {
-    start: Coordinate;
-    end: Coordinate;
-    width: number;
-
-    constructor(start: [number, number], end: [number, number], width: number) {
-        this.start = new Coordinate(start[0], start[1]);
-        this.end = new Coordinate(end[0] , end[1]);
-        this.width = width;
     }
 }

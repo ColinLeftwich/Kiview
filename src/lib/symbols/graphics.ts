@@ -62,12 +62,12 @@ export class PinSymbol {
     length: number;
     angle: number;
 
-    constructor(type: EltricalTypeStrings, display: GraphicalTypeStrings, pos: [number, number], length: number, angel: number) {
+    constructor(type: EltricalTypeStrings, display: GraphicalTypeStrings, pos: [number, number], length: number, angle: number) {
         this.type = EletricalType[type];
         this.display = GraphicalType[display];
         this.pos = new Coordinate(pos[0], pos[1])
         this.length = length;
-        this.angle = angel;
+        this.angle = angle;
     }
 }
 

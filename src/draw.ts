@@ -41,7 +41,7 @@ export const drawRectangle = (rectangle: RectangleData): Container => {
     rectangle_container.addChild(rectangle_graphic);
     return rectangle_container;
 }
-
+/*
 export const drawPin = (pin: PinData): Container => {
     let pin_container = new Container();
 
@@ -76,6 +76,7 @@ export const drawPin = (pin: PinData): Container => {
 
     return pin_container
 }
+*/
 
 export const drawWire = (wire: LineData): Container => {
     let wire_container = new Container();

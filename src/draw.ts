@@ -1,9 +1,9 @@
 import { Container, Graphics } from 'pixi.js'
 import { RectangleData } from './lib/dataclass/rectangle'
 import { LineData } from './lib/dataclass/line'
-import { PinData } from './lib/dataclass/pin'
+// import { PinData } from './lib/dataclass/pin'
 
-const MM_TO_PX = (length: number): number => {
+function MM_TO_PX(length: number): number {
     return length / 0.1
 }
 

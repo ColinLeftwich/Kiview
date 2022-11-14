@@ -6,7 +6,7 @@ import { Libraries } from './parse_mock';
 
 import { RectangleData } from './lib/dataclass/rectangle';
 import { drawRectangle } from "./draw";
-import { PinData } from './lib/dataclass/pin';
+// import { PinData } from './lib/dataclass/pin';
 
 export const sch_render = (libraries: Libraries, components: Array<SymbolInstance>, sch_view: Viewport) => {
     for (let index in components) {
@@ -15,6 +15,17 @@ export const sch_render = (libraries: Libraries, components: Array<SymbolInstanc
 
         const component_container = new Container()
 
+        if (symbol.graphics.rectangles.length !== 0) {
+            for (let index in symbol.graphics.rectangles) {
+                let rectangle_symbol = symbol.graphics.rectangles[index];
+                let rectangle_data = new RectangleData(component, rectangle_symbol);
+
+                let rectangle_graphic = drawRectangle(rectangle_data)
+                component_container.addChild(rectangle_graphic)
+            }
+        }
+
+        /*
         if (symbol.graphics.arcs.length !== 0) {
             for (let index in symbol.graphics.arcs) {
                 let _arc_symbol = symbol.graphics.arcs[index];
@@ -32,17 +43,9 @@ export const sch_render = (libraries: Libraries, components: Array<SymbolInstanc
                 // Create drawCircle function
             }
         }
+        */
 
-        if (symbol.graphics.rectangles.length !== 0) {
-            for (let index in symbol.graphics.rectangles) {
-                let rectangle_symbol = symbol.graphics.rectangles[index];
-                let rectangle_data = new RectangleData(component, rectangle_symbol);
-
-                let rectangle_graphic = drawRectangle(rectangle_data)
-                component_container.addChild(rectangle_graphic)
-            }
-        }
-
+        /*
         if (symbol.pins.length !== 0) {
             for (let index in symbol.pins) {
                 // let pin_symbol = symbol.pins[index];
@@ -52,7 +55,7 @@ export const sch_render = (libraries: Libraries, components: Array<SymbolInstanc
                 // component_container.addChild(pin_graphic);
             }
         }
-
+        */
         sch_view.addChild(component_container)
     }
 }
